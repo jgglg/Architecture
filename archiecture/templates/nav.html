@@ -1,0 +1,89 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="side-menu">
+            {% include 'nav_li_profile.html' %}
+
+            <li id="customer">
+                <a href="#" PERM_CODE="menu_customer" style="display: none;"><i class="fa fa-rebel"></i> <span class="nav-label">客户</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li class="menu-item" value="/customer/customer_list" PERM_CODE="submenu_customer_list" style="display: none;"><a href="#">客户列表</a></li>
+                    <li class="menu-item" value="/customer/resource_list" PERM_CODE="submenu_resource_list" style="display: none;"><a href="#">资源列表</a></li>
+                </ul>
+            </li>
+
+
+            <li id="task">
+                <a PERM_CODE="menu_task" style="display: none;"><i class="fa fa-cube"></i> <span class="nav-label">任务</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li class="menu-item" value="/workorder/list" PERM_CODE="submenu_workorder_list" style="display: none;"><a href="#">工单列表</a></li>
+                    <li class="menu-item" value="/task/IP_search" PERM_CODE="submenu_IP_search"><a href="#">IP查询</a></li>
+                </ul>
+            </li>
+
+            <li id="finance">
+                <a PERM_CODE="menu_finance" style="display: none;"><i class="fa fa-files-o"></i> <span class="nav-label">财务</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li class="menu-item" value="/finance/bill" PERM_CODE="submenu_bill" style="display: none;"><a href="#">账单</a></li>
+                    <li class="menu-item" value="/finance/money_urge" PERM_CODE="submenu_money_urge" style="display: none;"><a href="#">催款</a></li>
+                    <li class="menu-item" value="/finance/recharge" PERM_CODE="submenu_recharge" style="display: none;"><a href="#">充值</a></li>
+                    <li class="menu-item" value="/finance/invoice" PERM_CODE="submenu_invoice" style="display: none;"><a href="#">发票</a></li>
+                </ul>
+            </li>
+
+            {% if is_superuser == 1 %}
+                <li id="system">
+                    <a PERM_CODE="menu_system_settings"><i class="fa fa-edit"></i> <span class="nav-label">系统设置</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li class="menu-item" value="/system/operate_log" PERM_CODE="submenu_operation_log"><a href="#">操作日志</a></li>
+                        <li class="menu-item" value="/system/user_list/1" PERM_CODE="submenu_user"><a href="#">用户</a></li>
+                        <li class="menu-item" value="/system/role_list/1" PERM_CODE="submenu_role"><a href="#">角色</a></li>
+                        <li class="menu-item" value="/system/permission_list/1"PERM_CODE="submenu_permission"><a href="#">权限</a></li>
+                        <li class="menu-item" value="/system/current_user_profile/" PERM_CODE="submenu_user_profile"><a href="#">个人信息</a></li>
+                    </ul>
+                </li>
+            {% else %}
+                <li id="system">
+                    <a PERM_CODE="menu_system_settings"><i class="fa fa-edit"></i> <span class="nav-label">系统设置</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li class="menu-item" value="/system/operate_log" PERM_CODE="submenu_operation_log" style="display: none;"><a href="#">操作日志</a></li>
+                        <li class="menu-item" value="/system/user_list/1" PERM_CODE="submenu_user" style="display: none;"><a href="#">用户</a></li>
+                        <li class="menu-item" value="/system/role_list/1" PERM_CODE="submenu_role" style="display: none;"><a href="#">角色</a></li>
+                        <li class="menu-item" value="/system/permission_list/1"PERM_CODE="submenu_permission" style="display: none;"><a href="#">权限</a></li>
+                        <li class="menu-item" value="/system/current_user_profile/" PERM_CODE="submenu_user_profile"><a href="#">个人信息</a></li>
+                    </ul>
+                </li>
+            {% endif %}
+
+
+        </ul>
+
+    </div>
+</nav>
+
+
+<script>
+    $(document).ready(function() {
+        var url_disable="/system/get_session_permit";
+        $.ajax({
+            async: false,
+            url: url_disable,
+            dataType: 'json',
+            error: function(resp) {
+{#                alert("");#}
+            },
+            success: function(resp) {
+{#                alert(resp)#}
+                for( var i in resp){
+                    var id = resp[i];
+                    $("[PERM_CODE="+id+"]").show()
+                }
+            }
+        });
+
+    });
+
+</script>
+
+
+
+
