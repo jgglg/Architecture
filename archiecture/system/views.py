@@ -665,10 +665,5 @@ def get_session_permit(request):
     return HttpResponse(json.dumps(resp), content_type="application/json")
 
 
-@require_permission("menu_custmer")
-def test_case(request):
-    print "gooooooooooood"
-
-
 def auth_fail(request):
     return render_to_response('system/auth_fail.html', locals(), content_type=RequestContext(request))

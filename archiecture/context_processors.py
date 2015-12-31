@@ -1,5 +1,5 @@
 # --*--coding: utf-8 --*--
-from archiecture.system.tests import get_role_ids
+from archiecture.system.utils import get_role_ids
 from archiecture.system.models import User
 
 __author__ = 'nolan'

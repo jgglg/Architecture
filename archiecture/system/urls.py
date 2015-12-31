@@ -62,6 +62,6 @@ urlpatterns = [
     # 权限认证未通过跳转
     url(r'^auth_fail/$', views.auth_fail, name="auth_fail"),
 
-    url(r'^test$', views.test_case, name="test_case"),
+    url(r'^test$', tests.test_case, name="test_case"),
 ]
 
